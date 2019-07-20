@@ -5,6 +5,8 @@ require("./db/dbConeection");
 const express = require("express");
 const path = require("path");
 const userRouter = require("./routers/UserRouter");
+var cookieParser = require("cookie-parser");
+var session = require('express-session');
 
 //setup excpress
 const app = express();
@@ -14,7 +16,14 @@ app.use(express.static(publicDirectory));
 
 app.set("view engine", 'hbs');
 app.set("views", path.join(__dirname, "../templates/views"))
-// ///////
+// setup cookies
+app.use(cookieParser());
+app.use(session({
+    secret: "Shh, its a secret!",
+    resave: true,
+    saveUninitialized: true
+}));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(userRouter);
 

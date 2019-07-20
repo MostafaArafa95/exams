@@ -1,8 +1,17 @@
 const excpress = require("express");
 const UserModel = require("../models/UserModel");
+const auth = require("../middleware/auth");
 const router = excpress.Router();
-router.get("/", (req, res) => {
-    res.redirect("login")
+
+router.get("/", auth, (req, res) => {
+    if (!req.user)
+        res.redirect("login")
+    else if (req.user.profession) {
+        res.send("dummy homepage for teacher");
+    } else {
+        res.send("dummy homepage for student");
+
+    }
 })
 router.get("/signup", (req, res) => {
     res.render("signup", {
@@ -14,16 +23,28 @@ router.post("/signup", async (req, res) => {
     console.log(req.body);
     try {
         const user = await new UserModel(req.body);
-        user.save();
-        if (user._id)
-            res.send("Done " + user._id);
+        await user.save();
+        if (user._id) {
+            const authToken = await user.generateAuthToken();
+            req.session.authToken = authToken;
+            req.session.name = "HIII"
+
+            res.send("You logged in as " + user.name);
+
+        }
         else {
-            res.send(error.message);
+            res.render("signup", {
+                errorMessage: `<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>Could not signup</div>`
+
+            })
 
         }
 
     } catch (error) {
-        res.send(error.message);
+        res.render("signup", {
+            errorMessage: `<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>${error.message}</div>`
+
+        })
 
     }
 
@@ -31,21 +52,31 @@ router.post("/signup", async (req, res) => {
 
 
 })
-router.get("/login", (req, res) => {
-    res.render("login", {
+router.get("/login", auth, (req, res) => {
+    if (req.user) {
 
-    })
+
+        res.send("You logged in as " + req.user.name);
+    }
+    else
+        res.render("login", {
+
+        })
 })
 router.post("/login", async (req, res) => {
     try {
-        const user = await UserModel.findOne({
-            email: req.body.email,
-            password: req.body.password
-        });
-
-
+        /* const user = await UserModel.findOne({
+             email: req.body.email,
+             password: req.body.password
+         });*/
+        const user = await UserModel.findByCredentials(req.body.email, req.body.password);
         if (user._id) {
-            res.send("Done");
+            const authToken = await user.generateAuthToken();
+            req.session.authToken = authToken;
+            req.session.name = "HIII"
+
+            res.send("You logged in as " + user.name);
+
         } else {
             res.render("login", {
                 errorMessage: "<div class='alert'><span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span><strong>Wrong</strong> email or password</div>"
