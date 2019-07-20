@@ -1,0 +1,19 @@
+{
+  "name": "exams",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "env-cmd -f ./config/dev.env nodemon src/app.js"
+  },
+  "author": "Mostafa Arafa",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "env-cmd": "^9.0.3",
+    "express": "^4.17.1",
+    "hbs": "^4.0.4",
+    "mongoose": "^5.6.5",
+    "validator": "^11.1.0"
+  }
+}
