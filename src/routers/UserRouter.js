@@ -7,7 +7,7 @@ router.get("/", auth, (req, res) => {
     if (!req.user)
         res.redirect("login")
     else if (req.user.profession) {
-        res.send("dummy homepage for teacher");
+        res.redirect("teacher")
     } else {
         res.send("dummy homepage for student");
 
@@ -75,7 +75,13 @@ router.post("/login", async (req, res) => {
             req.session.authToken = authToken;
             req.session.name = "HIII"
 
-            res.send("You logged in as " + user.name);
+            if (user.profession) {
+                res.redirect("/teacher")
+
+            } else {
+                //TODO: redirect to student's home page
+            }
+
 
         } else {
             res.render("login", {

@@ -5,6 +5,7 @@ require("./db/dbConeection");
 const express = require("express");
 const path = require("path");
 const userRouter = require("./routers/UserRouter");
+const teacherRouter = require("./routers/TeacherRouter")
 var cookieParser = require("cookie-parser");
 var session = require('express-session');
 
@@ -25,7 +26,9 @@ app.use(session({
 }));
 
 app.use(express.urlencoded({ extended: true }));
+
 app.use(userRouter);
+app.use(teacherRouter);
 
 
 
