@@ -15,19 +15,15 @@
         <section class="sign-in">
             <div class="container">
                 <div class="signin-content">
-                    <table style="width:100%">
-                        <tr>
+                    <table style="width:100%" class="withBorders">
+                        <tr class="withBorders" style="background-color: #4CAF50;color: white;">
                             <th>Quiz</th>
                             <th>Question Count</th>
                             <th>published</th>
                             <th><button onclick="window.location.href = '/teacher/addExam';">+</button></th>
                         </tr>
-                        <tr>
-                            <th>Quiz 1</th>
-                            <th>5</th>
-                            <th><button class="myButton">publish now</button></th>
-                            <th></th>
-                        </tr>
+
+                        {{{quizListHTML}}}
 
                     </table>
                 </div>

@@ -756,7 +756,9 @@ label.valid {
     }
     
     
-    
+    .withBorders{
+      border: 1px solid black;
+    }
 
 
     table {
@@ -778,5 +780,6 @@ label.valid {
       margin: 20px;
       padding: 30px;
     }
+    tr:nth-child(even) {background-color: #f2f2f2;}
 
 /*# sourceMappingURL=style.css.map */
