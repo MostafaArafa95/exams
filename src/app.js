@@ -9,6 +9,7 @@ const teacherRouter = require("./routers/TeacherRouter")
 const studentRouter = require("./routers/StudentRouter");
 var cookieParser = require("cookie-parser");
 var session = require('express-session');
+const port = process.env.PORT || 3000
 
 //setup excpress
 const app = express();
@@ -34,7 +35,7 @@ app.use(studentRouter);
 
 
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log(`Server is up and running on port ${process.env.PORT}`);
 
 })

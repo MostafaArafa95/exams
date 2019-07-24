@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "start": "env-cmd -f ./config/dev.env nodemon -e js,html,hbs src/app.js "
+    "start": "node src/app.js",
+    "dev": "env-cmd -f ./config/dev.env nodemon -e js,html,hbs src/app.js "
   },
   "author": "Mostafa Arafa",
   "license": "ISC",

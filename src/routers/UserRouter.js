@@ -29,7 +29,8 @@ router.post("/signup", async (req, res) => {
             req.session.authToken = authToken;
             req.session.name = "HIII"
 
-            res.send("You logged in as " + user.name);
+            //res.send("You logged in as " + user.name);
+            res.redirect("/");
 
         }
         else {
@@ -98,6 +99,11 @@ router.post("/login", async (req, res) => {
 
     }
 })
+router.get("/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/");
+    });
+});
 
 
 
