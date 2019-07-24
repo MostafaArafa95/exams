@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home page</title>
+</head>
+
+<body>
+    <input type="hidden" id="questionsCount" name="custId" value="{{questionsCount}}">
+
+    <div class="main">
+        <section class="sign-in">
+            <div class="container">
+                <div>
+                    <form method="POST" class="questionForm" id="questionForm">
+                        <input type="text" name="title" placeholder="Exam title" class="questionInput"
+                            value={{examTitle}}>
+
+                        <div id="questionsList">
+
+
+                            <div id="fullQuestion" style="margin-bottom: 30px" hidden>
+
+                                <input type="text" name="question" placeholder="Question" class="questionInput">
+                                <table>
+                                    <tr>
+                                        <th scope="col">
+                                            <input type="radio" name="correct" value="0" style="all: unset"
+                                                checked="checked" />
+                                        </th>
+                                        <th scope="col">
+                                            <input type="text" name="answer1" placeholder="Answer 1" />
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">
+                                            <input type="radio" name="correct" value="1" style="all: unset" />
+                                        </th>
+                                        <th scope="col">
+                                            <input type="text" name="answer2" placeholder="Answer 2" />
+                                        </th>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">
+                                            <input type="radio" name="correct" value="2" style="all: unset" />
+                                        </th>
+                                        <th scope="col">
+                                            <input type="text" name="answer3" placeholder="Answer 3" />
+                                        </th>
+
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">
+                                            <input type="radio" name="correct" value="3" style="all: unset" />
+                                        </th>
+                                        <th scope="col">
+                                            <input type="text" name="answer4" placeholder="Answer 4" />
+                                        </th>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            {{{examHTML}}}
+                        </div>
+
+                        <div style="padding: 30px">
+                            <button style="float: right" class="blueButton" id="submitButton">Submit</button>
+                            <!-- <button style="float: right" class="redButton"
+                                onclick="window.location.href = '/teacher';">Discard</button>
+                            <button style="float: right" class="greenButton" value="published">publish</button>-->
+                        </div>
+
+
+
+
+
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="/js/takeQuiz.js"></script>
+
+</body>
+
+</html>

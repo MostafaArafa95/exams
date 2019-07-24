@@ -9,7 +9,7 @@ router.get("/", auth, (req, res) => {
     else if (req.user.profession) {
         res.redirect("teacher")
     } else {
-        res.send("dummy homepage for student");
+        res.redirect("/student");
 
     }
 })
@@ -79,7 +79,8 @@ router.post("/login", async (req, res) => {
                 res.redirect("/teacher")
 
             } else {
-                //TODO: redirect to student's home page
+                res.redirect("/student")
+
             }
 
 

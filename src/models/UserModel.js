@@ -31,13 +31,17 @@ const userSchema = new mongoose.Schema({
             type: String,
             required: true
         }
-    }]
+    }],
+    grades: [{
+        quiz: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Quiz",
+        }, grade: {
+            type: String
+        }
 
-    /* grades: [{
-        type: mongoose.Schema.Types.ObjectId,
-        //TODO: uncomment ref
-        //ref: "Quiz"
-    }]*/
+
+    }]
 });
 userSchema.pre('save', async function (next) {
 

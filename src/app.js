@@ -6,6 +6,7 @@ const express = require("express");
 const path = require("path");
 const userRouter = require("./routers/UserRouter");
 const teacherRouter = require("./routers/TeacherRouter")
+const studentRouter = require("./routers/StudentRouter");
 var cookieParser = require("cookie-parser");
 var session = require('express-session');
 
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(userRouter);
 app.use(teacherRouter);
+app.use(studentRouter);
 
 
 
