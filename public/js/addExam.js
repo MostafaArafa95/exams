@@ -21,12 +21,26 @@ function addQuestion(e) {
     lastQuestion.children[1].children[0].children[1].children[0].children[0].setAttribute("name", "correct" + questionscount);
     lastQuestion.children[1].children[0].children[2].children[0].children[0].setAttribute("name", "correct" + questionscount);
     lastQuestion.children[1].children[0].children[3].children[0].children[0].setAttribute("name", "correct" + questionscount);
+
+    let allInputs = lastQuestion.getElementsByTagName("input");
+    for (let i = 0; i < allInputs.length; i++) {
+        const element = allInputs[i];
+        if (element.getAttribute("type") == "text") {
+            element.required = true;
+
+        }
+
+
+    }
+
+    console.log("All inputs count " + allInputs.length);
+
     /*
     lastQuestion.children[1].children[0].children[0].children[0].setAttribute("name", "correct" + questionscount)
     lastQuestion.children[1].children[1].children[0].children[0].setAttribute("name", "correct" + questionscount)
     lastQuestion.children[1].children[2].children[0].children[0].setAttribute("name", "correct" + questionscount)
     lastQuestion.children[1].children[3].children[0].children[0].setAttribute("name", "correct" + questionscount)
-*/
+    */
     questionsList.appendChild(lastQuestion);
     try {
         e = e || window.event;
